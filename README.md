@@ -1,5 +1,5 @@
 
-(Installing kubeadm)[https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/]
+[Installing kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
     
     One or more machines running one of:
     
