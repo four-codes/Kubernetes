@@ -115,3 +115,15 @@ Cloud Kubernetes API Access
 
     echo 'source <(kubectl completion bash)' >>~/.bashrc
     
+
+API Mechanisam
+    
+    https://[MasterIP]/api/v1/namespaces/[Namespace Name]/pods/[Pod Name]
+    
+  | Namespace Name | Pod Name | 
+  | --------------- | --------------- |
+  | default | webserver | 
+
+        
+    https://104.196.160.178/api/v1/namespaces/default/pods/webserver
+    
