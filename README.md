@@ -100,3 +100,17 @@ Node add verification process
 Master Act as node
 
     kubectl taint nodes --all node-role.kubernetes.io/master-
+
+
+
+Cloud Kubernetes API Access
+
+    # curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+    # chmod +x kubectl
+    # sudo mv kubectl /usr/local/bin/
+    # kubectl version
+    
+ Autocomplete kubectl
+
+    echo 'source <(kubectl completion bash)' >>~/.bashrc
+    
