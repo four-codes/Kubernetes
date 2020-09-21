@@ -5,7 +5,8 @@ Kubernetes Cluster Requirments
 | master-server | 2 CPU | 4GB RAM | ubuntu os 16+ |
 | worker-server-one | 2 CPU | 4GB RAM | ubuntu os 16+ |
 | worker-server-two | 2 CPU | 4GB RAM | ubuntu os 16+ |
-                  
+
+[GitHub Reference](https://www.pluralsight.com/guides/working-tables-github-markdown)
 
 
 [Installing kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
