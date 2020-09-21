@@ -57,12 +57,12 @@ Master Initiate Process
     # sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     # sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-[kube proxy addons installatio](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/#configuration-options)
+[kube proxy addons installation](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/#configuration-options)
 
     # kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 
 
-[kube proxy addons installatio Manual](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/#configuration-options)
+[kube proxy addons installation Manual](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/#configuration-options)
     
     # export kubever=$(kubectl version | base64 | tr -d '\n')
     # kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
