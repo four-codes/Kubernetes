@@ -33,3 +33,9 @@
         TCP	        Inbound	    10251	    kube-scheduler	         Self
         TCP	        Inbound	    10252	    kube-controller-manager	 Self
     
+ Worker node(s)
+
+    Protocol	Direction	Port Range	Purpose	            Used By
+    ---------------------------------------------------------------------------
+    TCP	        Inbound	    10250	    Kubelet API	        Self, Control plane
+    TCP	        Inbound	    30000-32767	NodePort Services	All
