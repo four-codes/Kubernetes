@@ -8,6 +8,9 @@ Kubernetes Cluster Requirments
 
 [GitHub Reference](https://www.pluralsight.com/guides/working-tables-github-markdown)
 
+[local development](https://kubernetes.io/docs/tasks/tools/install-minikube/)
+
+    curl -L https://raw.githubusercontent.com/FourTimes/Kubernetes/master/minikube.sh | bash
 
 [Installing kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
     
