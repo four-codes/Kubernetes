@@ -45,3 +45,18 @@ Installtion
 
     # curl -L https://raw.githubusercontent.com/FourTimes/Kubernetes/master/kubeadm-docker-install.sh | bash
     
+Master Initiate Process
+
+    kubeadm init --apiserver-advertise-address $(hostname -i) --pod-network-cidr=192.168.0.0/16
+    mkdir -p $HOME/.kube
+    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+[kube proxy addons installatio](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/#configuration-options)
+
+    kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+
+    Optional:
+    
+        export kubever=$(kubectl version | base64 | tr -d '\n')
+        kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
