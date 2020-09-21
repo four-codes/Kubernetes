@@ -23,13 +23,13 @@
       1. You can get the MAC address of the network interfaces using the command ip link or ifconfig -a
       2. The product_uuid can be checked by using the command sudo cat /sys/class/dmi/id/product_uuid
       
-    ------------------------------------------------------------------------------------------------
-    | Protocol   |	Direction     |  Port Range | Purpose	                | Used By              |
-    ------------------------------------------------------------------------------------------------
+    |------------|----------------|-------------|---------------------------|----------------------|
+    | Protocol   | #Direction     | #PortRange  | #Purpose                  | #UsedBy              |
+    |------------|----------------|-------------|---------------------------|----------------------|
     | TCP	     |   Inbound	  |  6443*	    |  Kubernetes API server	| All                  |
     | TCP	     |   Inbound	  |  2379-2380  |  etcd server client API	| kube-apiserver, etcd |
     | TCP	     |   Inbound	  |  10250	    |  Kubelet API	            | Self, Control plane  |
     | TCP	     |   Inbound	  |  10251	    |  kube-scheduler	        | Self                 |
     | TCP	     |   Inbound	  |  10252	    |  kube-controller-manager  | Self	               |
-    ------------------------------------------------------------------------------------------------
+    |------------|----------------|-------------|---------------------------|----------------------|
     
