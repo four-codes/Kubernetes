@@ -63,7 +63,35 @@ Master Initiate Process
 
 Cluster Verification Process
 
+    # kubectl cluster-info
+    # kubectl get events
     # kubectl get nodes
-    # kubectl get pods --all-namespaces
+    # kubectl get nodes -o wide
     # kubectl get nodes --show-lables
     # kubectl get namespaces
+    # kubectl get pods --all-namespaces
+    
+Token Creation process:
+    
+    # kubeadm token list
+    # kubeadm token create --print-join-command
+    
+
+Token Create process Manual ( optional )
+    
+    # openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null |  openssl dgst -sha256 -hex | sed 's/^.* //'
+    # kubeadm join --token <token> <master-ip>:6443 --discovery-token-ca-cert-hash sha256:<hash>
+    
+
+Node add verification process
+    
+    # kubectl get nodes
+    # kubectl get nodes -o wide
+    # kubectl get nodes --show-lables
+    # kubectl get pods -n kube-system
+
+
+
+Master Act as node
+
+    kubectl taint nodes --all node-role.kubernetes.io/master-
