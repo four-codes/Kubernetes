@@ -84,7 +84,7 @@ Cluster Verification Process
     # kubectl get namespaces
     # kubectl get pods --all-namespaces
     
-Token Creation process:
+[Token Creation process](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/):
     
     # kubeadm token list
     # kubeadm token create --print-join-command
