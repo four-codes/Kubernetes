@@ -90,7 +90,7 @@ Cluster Verification Process
     # kubeadm token create --print-join-command
     
 
-Token Create process Manual ( optional )
+[Token Create process Manual](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/)
     
     # openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null |  openssl dgst -sha256 -hex | sed 's/^.* //'
     # kubeadm join --token <token> <master-ip>:6443 --discovery-token-ca-cert-hash sha256:<hash>
