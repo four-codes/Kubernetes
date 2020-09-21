@@ -47,7 +47,7 @@ Kubernetes Cluster Requirments
 | TCP | Inbound | 10252 |  kube-controller-manager | Self |
 
 
- Worker node(s)
+[Worker node](https://kubernetes.io/docs/concepts/overview/components/#node-components)
 
 
 | Protocol | Direction | Port Range | Purpose | Used By |
