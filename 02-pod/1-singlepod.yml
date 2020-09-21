@@ -1,15 +1,14 @@
 ---
-apiVersion: batch/v1
-kind: Job
+apiVersion: v1
+kind: Pod
 metadata:
-  name: hello
+  name: single-pod
+  namespace: animals
+  labels:
+    app: httpd
 spec:
-  template:
-    # This is the pod template
-    spec:
-      containers:
-      - name: hello
-        image: busybox
-        command: ['sh', '-c', 'echo "Hello, Kubernetes!" && sleep 3600']
-      restartPolicy: OnFailure
-    # The pod template ends here
+  containers:
+  - name: httpd
+    image: httpd
+    ports:
+    - containerPort: 80

@@ -51,3 +51,28 @@ Setting the namespace preference
 test Run
 
     kubectl run nginx --image=nginx --namespace=test
+
+
+diffrence between yml vs json
+
+    # json format
+
+    {
+    "apiVersion": "v1",
+    "kind": "Namespace",
+    "metadata": {
+        "name": "animals",
+        "labels": {
+        "name": "lion"
+        }
+    }
+    }
+
+    # Yml format  
+    ---
+    apiVersion: v1
+    kind: Namespace
+    metadata:
+      name: animals
+      labels:
+        name: lion
