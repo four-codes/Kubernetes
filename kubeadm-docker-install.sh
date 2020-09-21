@@ -3,13 +3,28 @@
 # https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 # https://kubernetes.io/docs/setup/production-environment/container-runtimes/
 
-echo "Installing Docker"
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo apt-key fingerprint 0EBFCD88
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-sudo apt-get update && sudo apt-get install -y docker-ce=5:18.09.9~3-0~ubuntu-bionic docker-ce-cli containerd.io
+# (Install Docker CE)
+## Set up the repository:
+### Install packages to allow apt to use a repository over HTTPS
+sudo apt-get update && sudo apt-get install -y \
+  apt-transport-https ca-certificates curl software-properties-common gnupg2
 
-echo "Docker Daemon Installion"
+# Add Docker's official GPG key:
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+# Add the Docker apt repository:
+add-apt-repository \
+  "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) \
+  stable"
+
+# Install Docker CE
+sudo apt-get update && sudo apt-get install -y \
+  containerd.io=1.2.13-2 \
+  docker-ce=5:19.03.11~3-0~ubuntu-$(lsb_release -cs) \
+  docker-ce-cli=5:19.03.11~3-0~ubuntu-$(lsb_release -cs)
+
+# Set up the Docker daemon
 cat <<EOF | sudo tee /etc/docker/daemon.json
 {
   "exec-opts": ["native.cgroupdriver=systemd"],
@@ -24,6 +39,8 @@ EOF
 sudo mkdir -p /etc/systemd/system/docker.service.d
 sudo systemctl daemon-reload
 sudo systemctl restart docker
+sudo systemctl enable docker
+
 
 echo "Installing Kubernetes components..."
 
