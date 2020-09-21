@@ -53,7 +53,6 @@ Kubernetes Cluster Requirments
 | TCP | Inbound | 30000-32767 | NodePort Services | All |
       		
 
-
 Installtion 
 
     # curl -L https://raw.githubusercontent.com/FourTimes/Kubernetes/master/kubeadm-docker-install.sh | bash
@@ -110,7 +109,7 @@ Master Act as node
 
     kubectl taint nodes --all node-role.kubernetes.io/master-
 
-
+[kubeadm commands reference](https://kubernetes.io/docs/reference/setup-tools/kubeadm/)
 
 [Kubernetes API Access](https://kubernetes.io/docs/reference/kubectl/overview/)
 
