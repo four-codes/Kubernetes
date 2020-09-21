@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 
-echo "Installing Docker..."
+# https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+# https://kubernetes.io/docs/setup/production-environment/container-runtimes/
 
+echo "Installing Docker"
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo apt-key fingerprint 0EBFCD88
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 sudo apt-get update && sudo apt-get install -y docker-ce=5:18.09.9~3-0~ubuntu-bionic docker-ce-cli containerd.io
 
-echo "Configuring Docker..."
-
-cat >/etc/docker/daemon.json <<EOF
+echo "Docker Daemon Installion"
+cat <<EOF | sudo tee /etc/docker/daemon.json
 {
   "exec-opts": ["native.cgroupdriver=systemd"],
   "log-driver": "json-file",
