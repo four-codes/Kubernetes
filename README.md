@@ -50,7 +50,7 @@ Installtion
 
     # curl -L https://raw.githubusercontent.com/FourTimes/Kubernetes/master/kubeadm-docker-install.sh | bash
     
-(Master Initiate Process)[https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/]
+[Master Initiate Process](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
 
     # kubeadm init --apiserver-advertise-address $(hostname -i) --pod-network-cidr=192.168.0.0/16
     # mkdir -p $HOME/.kube
