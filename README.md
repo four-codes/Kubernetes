@@ -47,16 +47,23 @@ Installtion
     
 Master Initiate Process
 
-    kubeadm init --apiserver-advertise-address $(hostname -i) --pod-network-cidr=192.168.0.0/16
-    mkdir -p $HOME/.kube
-    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+    # kubeadm init --apiserver-advertise-address $(hostname -i) --pod-network-cidr=192.168.0.0/16
+    # mkdir -p $HOME/.kube
+    # sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+    # sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 [kube proxy addons installatio](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/#configuration-options)
 
-    kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+    # kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 
     Optional:
     
-        export kubever=$(kubectl version | base64 | tr -d '\n')
-        kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
+    # export kubever=$(kubectl version | base64 | tr -d '\n')
+    # kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
+
+Cluster Verification Process
+
+    # kubectl get nodes
+    # kubectl get pods --all-namespaces
+    # kubectl get nodes --show-lables
+    # kubectl get namespaces
