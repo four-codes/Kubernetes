@@ -36,7 +36,7 @@ Kubernetes Cluster Requirments
       1. You can get the MAC address of the network interfaces using the command ip link or ifconfig -a
       2. The product_uuid can be checked by using the command sudo cat /sys/class/dmi/id/product_uuid
       
-  Check required ports
+[Check required ports](https://kubernetes.io/docs/concepts/overview/components/)
 
 | Protocol | Direction | Port Range | Purpose | Used By |
 | --------------- | --------------- | --------------- | --------------- | --------------- |
