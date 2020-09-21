@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# This is script only support for debian family
+
 # https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 # https://kubernetes.io/docs/setup/production-environment/container-runtimes/
 
