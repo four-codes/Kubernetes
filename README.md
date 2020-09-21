@@ -1,4 +1,5 @@
-# Kubernetes
+
+(Installing kubeadm)[https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/]
     
     One or more machines running one of:
     
@@ -22,7 +23,3 @@
       1. You can get the MAC address of the network interfaces using the command ip link or ifconfig -a
       2. The product_uuid can be checked by using the command sudo cat /sys/class/dmi/id/product_uuid
       
-    
- Reference Link:
-    
-    # https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
