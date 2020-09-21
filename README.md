@@ -39,3 +39,9 @@
     ---------------------------------------------------------------------------------------
     TCP	        Inbound	        10250	        Kubelet API	        Self, Control plane
     TCP	        Inbound	        30000-32767	NodePort Services	All
+
+
+Installtion 
+
+    # curl -L https://raw.githubusercontent.com/FourTimes/Kubernetes/master/kubeadm-docker-install.sh | bash
+    
