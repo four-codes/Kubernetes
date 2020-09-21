@@ -1,11 +1,4 @@
-#!/bin/bash
-#
-# Script to install Docker and Kubeadm in Ubuntu 18.04
-# 
-# Written by Juan Manuel Rey <juanmanuel.reyportal@gmail.com>
-# Based on Kubernetes official doc
-#
-
+#!/usr/bin/env bash
 
 echo "Installing Docker..."
 
@@ -16,7 +9,7 @@ sudo apt-get update && sudo apt-get install -y docker-ce=5:18.09.9~3-0~ubuntu-bi
 
 echo "Configuring Docker..."
 
-cat > /etc/docker/daemon.json <<EOF
+cat >/etc/docker/daemon.json <<EOF
 {
   "exec-opts": ["native.cgroupdriver=systemd"],
   "log-driver": "json-file",
@@ -34,7 +27,7 @@ sudo systemctl restart docker
 echo "Installing Kubernetes components..."
 
 sudo apt-get install -y apt-transport-https
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add 
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
 deb https://apt.kubernetes.io/ kubernetes-xenial main
 EOF
