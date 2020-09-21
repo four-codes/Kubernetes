@@ -122,6 +122,7 @@ Master Act as node
 
     echo 'source <(kubectl completion bash)' >>~/.bashrc
     
+[kubectl commands refer](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 
 API Mechanisam
     
