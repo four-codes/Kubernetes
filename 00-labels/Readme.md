@@ -30,4 +30,5 @@ LIST and WATCH filtering
 
     kubectl get pods -l environment=production,tier=frontend
     kubectl get pods -l 'environment in (production),tier in (frontend)'
-    kubectl get pods -l 'environment,environment notin (frontend)'    kubectl get pods -l 'environment in (production, qa)'
+    kubectl get pods -l 'environment,environment notin (frontend)'
+    kubectl get pods -l 'environment in (production, qa)'
