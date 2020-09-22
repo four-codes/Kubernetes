@@ -152,3 +152,10 @@ API Mechanisam
     
 
 [LimitRangeDocs](https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-default-namespace/)
+
+WorkLoads
+
+    [Pod](https://kubernetes.io/docs/concepts/workloads/pods/)
+
+    [ControllerDocs](https://kubernetes.io/docs/concepts/workloads/controllers/)
+
