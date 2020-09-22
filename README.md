@@ -106,7 +106,19 @@ Node add verification process
     # kubectl get nodes --show-lables
     # kubectl get pods -n kube-system
 
+Worker Node Label set
 
+    Add Label
+
+        kubectl label nodes <your_node> kubernetes.io/role=<your_label>
+    
+    Update Label
+
+        kubectl label --overwrite nodes <your_node> kubernetes.io/role=<your_node>
+
+    Remove Label
+
+        kubectl label node <node name> node-role.kubernetes.io/<role name>-
 
 Master Act as node
 
