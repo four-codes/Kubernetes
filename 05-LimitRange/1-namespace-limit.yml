@@ -11,4 +11,3 @@ spec:
       memory: 256Mi
     type: Container
 
-# https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-default-namespace/

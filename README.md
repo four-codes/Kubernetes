@@ -150,3 +150,5 @@ API Mechanisam
         
     https://104.196.160.178/api/v1/namespaces/default/pods/webserver
     
+
+[LimitRangeDocs](https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-default-namespace/)
