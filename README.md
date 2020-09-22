@@ -153,9 +153,36 @@ API Mechanisam
 
 [LimitRangeDocs](https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-default-namespace/)
 
-WorkLoads
+# WorkLoads
 
-    [Pod](https://kubernetes.io/docs/concepts/workloads/pods/)
+[Pods](https://kubernetes.io/docs/concepts/workloads/pods/)
 
-    [ControllerDocs](https://kubernetes.io/docs/concepts/workloads/controllers/)
+[ServicesDocs](https://kubernetes.io/docs/concepts/services-networking/)
 
+[ControllerDocs](https://kubernetes.io/docs/concepts/workloads/controllers/)
+
+[Storage](https://kubernetes.io/docs/concepts/storage/)
+
+[Configuration](https://kubernetes.io/docs/concepts/configuration/)
+
+[Security](https://kubernetes.io/docs/concepts/security/)
+
+[Policies](https://kubernetes.io/docs/concepts/policy/)
+
+[Scheduling and Eviction](https://kubernetes.io/docs/concepts/scheduling-eviction/)
+
+[Practical Tasks](https://kubernetes.io/docs/tasks/)
+
+[Access Applications in a Cluster](https://kubernetes.io/docs/tasks/access-application-cluster/)
+
+[Logging & Monitoring](https://kubernetes.io/docs/tasks/debug-application-cluster/)
+
+[Extend Kubernetes](https://kubernetes.io/docs/tasks/extend-kubernetes/)
+
+[TLS](https://kubernetes.io/docs/tasks/tls/)
+
+[Manage Cluster Daemons](https://kubernetes.io/docs/tasks/manage-daemon/)
+
+[Service Catalog](https://kubernetes.io/docs/tasks/service-catalog/)
+
+[Tutorials](https://kubernetes.io/docs/tutorials/)
