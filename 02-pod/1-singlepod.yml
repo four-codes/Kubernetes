@@ -2,13 +2,14 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: label-demo
+  name: animal-web-server
+  namespace: animals
   labels:
     environment: production
     app: nginx
 spec:
   containers:
-  - name: nginx
-    image: nginx:1.14.2
+  - name: animal-web-server
+    image: nginx
     ports:
     - containerPort: 80
