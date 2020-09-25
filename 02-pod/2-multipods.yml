@@ -1,5 +1,4 @@
 ---
-#single pod with multiple container's
 apiVersion: v1
 kind: Pod
 metadata:
@@ -11,11 +10,14 @@ metadata:
     version: v1
 spec:
   containers:
-  - name: web
+  - name: web-server
     image: httpd
     ports:
     - containerPort: 80
-  - name: db
+  - name: postgres-database-server
     image: postgres
     ports:
     - containerPort: 5432
+    env:
+    - name: POSTGRES_PASSWORD
+      value: mysecretpassword
