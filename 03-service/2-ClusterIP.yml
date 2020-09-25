@@ -29,9 +29,8 @@ metadata:
   labels:
     client: lion
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: web-servers
   ports:
   - port: 80
-    nodePort: 30001
