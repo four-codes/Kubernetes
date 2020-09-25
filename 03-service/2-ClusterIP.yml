@@ -9,7 +9,7 @@ metadata:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: lion-server
+  name: animals-lion-server
   namespace: animals
   labels:
     client: lion
@@ -24,13 +24,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: lion-server-service
+  name: animals-lion-server-service
   namespace: animals
   labels:
     client: lion
 spec:
   type: ClusterIP
   selector:
-    app: web-servers
+    app: web-server
   ports:
   - port: 80
