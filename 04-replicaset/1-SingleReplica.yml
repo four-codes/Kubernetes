@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: nginx
+          image: jjino/web-app:v1
           ports:
             - containerPort: 80
 ---

@@ -1,9 +1,18 @@
 ---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: trees
+  labels:
+    client: palm
+---
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: httpd-replica
-  namespace: facebook
+  namespace: trees
+  labels:
+    client: palm
 spec:
   replicas: 4
   minReadySeconds: 10
@@ -16,14 +25,13 @@ spec:
     metadata:
       name: web
       labels:
+        client: palm
         role: web
         version: v1
-        tier: frond
     spec:
       containers:
       - name: web
-        image: httpd
+        image: jjino/web-app:v1
         ports:
         - containerPort: 80
-          protocol: TCP
 
