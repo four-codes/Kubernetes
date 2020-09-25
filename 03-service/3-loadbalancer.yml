@@ -9,7 +9,7 @@ metadata:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: animals-lion-server-LB
+  name: animals-lion-server-lb
   namespace: animals
   labels:
     client: lion
@@ -24,7 +24,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: animals-lion-server-service-LB
+  name: animals-lion-server-service-lb
   namespace: animals
   labels:
     client: lion
