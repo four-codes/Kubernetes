@@ -1,0 +1,47 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: woolf
+  labels:
+    project: google
+    environment: test
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webserver
+  namespace: woolf
+  labels:
+    app: webdb
+    tier: backend
+    project: google
+    environment: test
+spec:
+  volumes:
+    - name: mysqldb
+      hostPath:
+        path: /var/mysql
+        type: DirectoryOrCreate
+    - name: webdata
+      hostPath:
+        path: /var/www/html
+        type: DirectoryOrCreate
+  containers:
+    - name: db-server
+      image: mysql
+      ports:
+        - containerPort: 3306
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: Password@123
+      volumeMounts:
+        - name: mysqldb
+          mountPath: /var/lib/mysql
+    - name: web-server
+      image: nginx
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - name: webdata
+          mountPath: /usr/share/nginx/html/
