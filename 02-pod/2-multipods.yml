@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: multicontainer-pods
-  namespace: facebook
+  namespace: animals
   labels:
     app: httpd
     tier: frontend-backend
