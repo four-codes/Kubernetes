@@ -1,0 +1,27 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multicontainer-pods
+  namespace: animals
+  labels:
+    app: httpd
+    tier: frontend-backend
+    version: v1
+spec:
+  containers:
+  - name: web-server
+    image: httpd
+    ports:
+    - containerPort: 80
+  - name: postgres-server
+    image: postgres
+    ports:
+    - containerPort: 5432
+    env:
+    - name: POSTGRES_PASSWORD
+      value: Password@12345
+  - name: redis-server
+    image: redis
+    ports:
+    - containerPort: 6379
