@@ -1,6 +1,0 @@
---2020-09-25 15:05:26--  https://apirptnprdstbatt01.blob.core.windows.net/apirptfilecontainer/jdk-13_linux-x64_bin.tar?sp=r
-Resolving apirptnprdstbatt01.blob.core.windows.net (apirptnprdstbatt01.blob.core.windows.net)... 20.150.50.132, 64:ff9b::1496:3284
-Connecting to apirptnprdstbatt01.blob.core.windows.net (apirptnprdstbatt01.blob.core.windows.net)|20.150.50.132|:443... connected.
-HTTP request sent, awaiting response... 403 This request is not authorized to perform this operation.
-2020-09-25 15:05:27 ERROR 403: This request is not authorized to perform this operation..
-
