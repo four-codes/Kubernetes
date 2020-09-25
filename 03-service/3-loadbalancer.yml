@@ -1,0 +1,36 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: animals
+  labels:
+    client: lion
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: animals-lion-server-LB
+  namespace: animals
+  labels:
+    client: lion
+    app: web-server
+spec:
+  containers:
+  - name: lino-app
+    image: nginx
+    ports:
+    - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: animals-lion-server-service-LB
+  namespace: animals
+  labels:
+    client: lion
+spec:
+  type: LoadBalancer
+  selector:
+    app: web-server
+  ports:
+  - port: 80
