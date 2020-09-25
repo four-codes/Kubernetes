@@ -9,7 +9,7 @@ metadata:
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: httpd-replica
+  name: tree-web-server
   namespace: trees
   labels:
     client: palm
@@ -34,4 +34,20 @@ spec:
         image: jjino/web-app:v1
         ports:
         - containerPort: 80
-
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tree-web-server-service
+  namespace: trees
+  labels:
+    client: palm
+spec:
+  type: NodePort
+  selector:
+    role: web
+  ports:
+    - port: 80
+      nodePort: 30002
+    - port: 6379
+      nodePort: 30003

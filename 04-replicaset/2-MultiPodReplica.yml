@@ -48,3 +48,5 @@ spec:
   ports:
     - port: 80
       nodePort: 30002
+    - port: 6379
+      nodePort: 30003
