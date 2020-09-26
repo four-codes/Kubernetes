@@ -24,18 +24,18 @@ Installtion process:
 
 To change config file
 
-cat <<EOF | kubectl apply -f -
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  namespace: metallb-system
-  name: config
-data:
-  config: |
-    address-pools:
-    - name: default
-      protocol: layer2
-      addresses:
-      - 10.1.0.100-10.1.0.200 # This is your localnetwork IP address Range
-EOF
+     cat <<EOF | kubectl apply -f -
+     ---
+     apiVersion: v1
+     kind: ConfigMap
+     metadata:
+       namespace: metallb-system
+       name: config
+     data:
+       config: |
+         address-pools:
+         - name: default
+           protocol: layer2
+           addresses:
+           - 10.0.1.100-10.0.1.120
+     EOF
