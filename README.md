@@ -379,9 +379,7 @@ Formatting output
     # All fields under metadata regardless of name
     kubectl get pods -A -o=custom-columns='DATA:metadata.*'
 
-[command Reference](https://kubernetes.io/docs/reference/kubectl/overview/#custom-columns)
-
-[kubernetes books](https://kubectl.docs.kubernetes.io/)
+[command Reference](https://kubernetes.io/docs/reference/kubectl/overview/#custom-columns) | [kubernetes books](https://kubectl.docs.kubernetes.io/) | [kubectl command](https://kubernetes.io/docs/reference/kubectl/kubectl/)
 
 
 WorkLoads
