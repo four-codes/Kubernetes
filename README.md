@@ -149,7 +149,13 @@ API Mechanisam
 
         
     https://104.196.160.178/api/v1/namespaces/default/pods/webserver
-    
+ 
+Pod security check command
+
+    kubectl auth can-i use psp/permissive --as=any-user
+    kubectl auth can-i use psp/permissive
+
+
 
 WorkLoads
 
