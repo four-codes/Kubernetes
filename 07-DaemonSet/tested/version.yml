@@ -1,0 +1,47 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: animals
+  labels:
+    client: lion
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: deployment-version-1
+  namespace: animals
+  labels:
+    client: lion
+spec:
+  selector:
+    matchLabels:
+      role: webserver
+  template:
+    metadata:
+      name: web
+      labels:
+        role: webserver
+    spec:
+      containers:
+      - name: web
+        image: jjino/web-app:v1
+        ports:
+        - name: http
+          containerPort: 80
+          protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lion-statefulset-web-server-service
+  namespace: animals
+  labels:
+    role: webserver
+spec:
+  type: LoadBalancer
+  selector:
+    role: webserver
+  ports:
+    - port: 80
