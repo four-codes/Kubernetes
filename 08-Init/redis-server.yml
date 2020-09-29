@@ -6,7 +6,7 @@ metadata:
   namespace: lucifer
 spec:
   strategy:
-    type: RollingUpdate #Bydefault (RollingUpdate/Recreate)
+    type: RollingUpdate # Bydefault (RollingUpdate/Recreate)
   revisionHistoryLimit: 4
   replicas: 1
   minReadySeconds: 10
