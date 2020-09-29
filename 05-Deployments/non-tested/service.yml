@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lion-deploymnt-web-server-service
+  namespace: animals
+  labels:
+    role: webserver
+spec:
+  type: NodePort
+  selector:
+    role: webserver
+  ports:
+    - port: 80
+      nodePort: 30001
