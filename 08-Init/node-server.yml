@@ -1,33 +1,58 @@
 ---
 apiVersion: v1
-kind: Pod
+kind: Namespace
 metadata:
-  name: node-server
+  name: animals
   labels:
-    app: myapp
+    client: lion
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-version-1
+  namespace: animals
+  labels:
+    client: lion
 spec:
-  containers:
-  - name: node-server
-    image: jjino/node-redis:v1.0
-    ports:
-    - containerPort: 8080
-  initContainers:
-  - name: init-myservice
-    image: jjino/test:latest
-    args:
-    - bash
-    - -c
-    - while true; do STATUS=$(redis-cli -h redis-service -p 6379 ping); if [ $STATUS = "PONG" ]; then echo "Connected"; break; else echo "Not connected"; fi; sleep 10; done
-
+  strategy:
+    rollingUpdate:
+      maxSurge: 0           
+      maxUnavailable: 1
+    type: RollingUpdate
+  replicas: 3
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      name: web
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: node-server
+        image: jjino/node-redis:v1.0
+        ports:
+        - containerPort: 8080
+      initContainers:
+      - name: init-myservice
+        image: jjino/test:latest
+        args:
+        - sh
+        - -c
+        - while true; do STATUS=$(redis-cli -h redis-service -p 6379 ping); if [ $STATUS = "PONG" ]; then echo "Connected"; break; else echo "Not connected"; fi; sleep 10; done
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: myservice
+  name: node-service
+  namespace: animals
 spec:
   selector:
     app: myapp
   ports:
   - protocol: TCP
-    port: 8080
+    port: 80
+    targetPort: 8080
   type: LoadBalancer

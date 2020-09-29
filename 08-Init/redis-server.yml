@@ -3,10 +3,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: redis-server
-  namespace: lucifer
+  namespace: animals
 spec:
   strategy:
-    type: RollingUpdate # Bydefault (RollingUpdate/Recreate)
+    type: RollingUpdate #Bydefault (RollingUpdate/Recreate)
   revisionHistoryLimit: 4
   replicas: 1
   minReadySeconds: 10
@@ -30,7 +30,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: redis-service
-  namespace: lucifer
+  namespace: animals
   labels:
     role: redis-service
 spec:
