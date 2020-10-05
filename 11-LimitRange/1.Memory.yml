@@ -1,8 +1,7 @@
----
 apiVersion: v1
 kind: LimitRange
 metadata:
-  name: mem-limit-range-namespace
+  name: mem-limit-range
 spec:
   limits:
   - default:
@@ -10,4 +9,3 @@ spec:
     defaultRequest:
       memory: 256Mi
     type: Container
-

@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: animal-web-server
+  labels:
+    environment: production
+    app: nginx
+spec:
+  containers:
+  - name: animal-web-server
+    image: nginx
+    ports:
+    - containerPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: animal-web-server-two
+  labels:
+    environment: production
+    app: nginx
+spec:
+  containers:
+  - name: animal-web-server-two
+    image: nginx
+    ports:
+    - containerPort: 80
