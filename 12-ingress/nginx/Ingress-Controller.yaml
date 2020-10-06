@@ -7,8 +7,8 @@ metadata:
     app: nginx-ingress
     chart: nginx-ingress-1.26.0
     heritage: Tiller
-    release: radiant
-  name: radiant-nginx-ingress
+    release: jaye
+  name: jaye-nginx-ingress
 ---
 # default-backend-serviceaccount.yaml
 apiVersion: v1
@@ -18,8 +18,8 @@ metadata:
     app: nginx-ingress
     chart: nginx-ingress-1.26.0
     heritage: Tiller
-    release: radiant
-  name: radiant-nginx-ingress-backend
+    release: jaye
+  name: jaye-nginx-ingress-backend
 ---
 # clusterrole.yaml
 apiVersion: rbac.authorization.k8s.io/v1beta1
@@ -29,8 +29,8 @@ metadata:
     app: nginx-ingress
     chart: nginx-ingress-1.26.0
     heritage: Tiller
-    release: radiant
-  name: radiant-nginx-ingress
+    release: jaye
+  name: jaye-nginx-ingress
 rules:
   - apiGroups:
       - ""
@@ -90,15 +90,15 @@ metadata:
     app: nginx-ingress
     chart: nginx-ingress-1.26.0
     heritage: Tiller
-    release: radiant
-  name: radiant-nginx-ingress
+    release: jaye
+  name: jaye-nginx-ingress
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: radiant-nginx-ingress
+  name: jaye-nginx-ingress
 subjects:
   - kind: ServiceAccount
-    name: radiant-nginx-ingress
+    name: jaye-nginx-ingress
     namespace: default
 ---
 # controller-role.yaml
@@ -109,8 +109,8 @@ metadata:
     app: nginx-ingress
     chart: nginx-ingress-1.26.0
     heritage: Tiller
-    release: radiant
-  name: radiant-nginx-ingress
+    release: jaye
+  name: jaye-nginx-ingress
 rules:
   - apiGroups:
       - ""
@@ -193,15 +193,15 @@ metadata:
     app: nginx-ingress
     chart: nginx-ingress-1.26.0
     heritage: Tiller
-    release: radiant
-  name: radiant-nginx-ingress
+    release: jaye
+  name: jaye-nginx-ingress
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: radiant-nginx-ingress
+  name: jaye-nginx-ingress
 subjects:
   - kind: ServiceAccount
-    name: radiant-nginx-ingress
+    name: jaye-nginx-ingress
     namespace: default
 ---
 # controller-service.yaml
@@ -213,8 +213,8 @@ metadata:
     chart: nginx-ingress-1.26.0
     component: "controller"
     heritage: Tiller
-    release: radiant
-  name: radiant-nginx-ingress-controller
+    release: jaye
+  name: jaye-nginx-ingress-controller
 spec:
   ports:
     - name: http
@@ -228,7 +228,7 @@ spec:
   selector:
     app: nginx-ingress
     component: "controller"
-    release: radiant
+    release: jaye
   type: "LoadBalancer"
 ---
 # default-backend-service.yaml
@@ -240,8 +240,8 @@ metadata:
     chart: nginx-ingress-1.26.0
     component: "default-backend"
     heritage: Tiller
-    release: radiant
-  name: radiant-nginx-ingress-default-backend
+    release: jaye
+  name: jaye-nginx-ingress-default-backend
 spec:
   ports:
     - name: http
@@ -251,7 +251,7 @@ spec:
   selector:
     app: nginx-ingress
     component: "default-backend"
-    release: radiant
+    release: jaye
   type: "ClusterIP"
 ---
 # controller-deployment.yaml
@@ -263,13 +263,13 @@ metadata:
     chart: nginx-ingress-1.26.0
     component: "controller"
     heritage: Tiller
-    release: radiant
-  name: radiant-nginx-ingress-controller
+    release: jaye
+  name: jaye-nginx-ingress-controller
 spec:
   selector:
     matchLabels:
       app: nginx-ingress
-      release: radiant
+      release: jaye
   replicas: 1
   revisionHistoryLimit: 10
   strategy:
@@ -280,7 +280,7 @@ spec:
       labels:
         app: nginx-ingress
         component: "controller"
-        release: radiant
+        release: jaye
     spec:
       dnsPolicy: ClusterFirst
       containers:
@@ -289,10 +289,10 @@ spec:
           imagePullPolicy: "IfNotPresent"
           args:
             - /nginx-ingress-controller
-            - --default-backend-service=default/radiant-nginx-ingress-default-backend
+            - --default-backend-service=default/jaye-nginx-ingress-default-backend
             - --election-id=ingress-controller-leader
             - --ingress-class=nginx
-            - --configmap=default/radiant-nginx-ingress-controller
+            - --configmap=default/jaye-nginx-ingress-controller
           securityContext:
             capabilities:
                 drop:
@@ -340,7 +340,7 @@ spec:
           resources:
             {}
       hostNetwork: false
-      serviceAccountName: radiant-nginx-ingress
+      serviceAccountName: jaye-nginx-ingress
       terminationGracePeriodSeconds: 60
 ---
 # default-backend-deployment.yaml
@@ -352,13 +352,13 @@ metadata:
     chart: nginx-ingress-1.26.0
     component: "default-backend"
     heritage: Tiller
-    release: radiant
-  name: radiant-nginx-ingress-default-backend
+    release: jaye
+  name: jaye-nginx-ingress-default-backend
 spec:
   selector:
     matchLabels:
       app: nginx-ingress
-      release: radiant
+      release: jaye
   replicas: 1
   revisionHistoryLimit: 10
   template:
@@ -366,7 +366,7 @@ spec:
       labels:
         app: nginx-ingress
         component: "default-backend"
-        release: radiant
+        release: jaye
     spec:
       containers:
         - name: nginx-ingress-default-backend
@@ -401,5 +401,5 @@ spec:
               protocol: TCP
           resources:
             {}
-      serviceAccountName: radiant-nginx-ingress-backend
+      serviceAccountName: jaye-nginx-ingress-backend
       terminationGracePeriodSeconds: 60
