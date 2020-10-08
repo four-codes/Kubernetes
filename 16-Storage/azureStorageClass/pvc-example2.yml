@@ -1,9 +1,20 @@
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: azure-managed-disk-appdata
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: managed-premium-retain
+  resources:
+    requests:
+      storage: 5Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx
-  namespace: lucifer
 spec:
   strategy:
     type: RollingUpdate #Bydefault (RollingUpdate/Recreate)
@@ -12,7 +23,7 @@ spec:
       maxUnavailable: 1
   revisionHistoryLimit: 4
   paused: false
-  replicas: 1
+  replicas: 2
   minReadySeconds: 10
   selector:
     matchLabels:
@@ -36,19 +47,17 @@ spec:
         - containerPort: 80
           protocol: TCP
         volumeMounts:
-        - mountPath: /usr/share/nginx/html
-          name: test-volume
+        - name: nginxdata
+          mountPath: /usr/share/nginx/html
       volumes:
-        - name: test-volume
-          gcePersistentDisk:
-            pdName: my-data-disk
-            fsType: ext4
+      - name: nginxdata
+        persistentVolumeClaim:
+          claimName: azure-managed-disk-appdata
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: web-service
-  namespace: lucifer
   labels:
     role: web-service
 spec:
@@ -57,8 +66,7 @@ spec:
     # version: 'v3'
     tier: frond
     jane: akil
-  type: NodePort
+  type: LoadBalancer
   ports:
   - port: 80
-    targetPort: 80
-    nodePort: 32001
+

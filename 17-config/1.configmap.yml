@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: election
-  namespace: facebook
+  namespace: jaye
 data:
   OPTION_A: Visa
   OPTION_B: Mastercard
