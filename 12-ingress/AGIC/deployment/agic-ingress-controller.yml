@@ -1,0 +1,463 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: aad-pod-id-nmi-service-account
+  namespace: migaportal-controller
+  labels:
+    app.kubernetes.io/name: azure-agic-ingress
+---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  labels:
+    app.kubernetes.io/name: azure-agic-ingress
+  name: azureassignedidentities.aadpodidentity.k8s.io
+spec:
+  group: aadpodidentity.k8s.io
+  version: v1
+  names:
+    kind: AzureAssignedIdentity
+    plural: azureassignedidentities
+  scope: Namespaced
+---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  labels:
+    app.kubernetes.io/name: azure-agic-ingress
+  name: azureidentitybindings.aadpodidentity.k8s.io
+spec:
+  group: aadpodidentity.k8s.io
+  version: v1
+  names:
+    kind: AzureIdentityBinding
+    plural: azureidentitybindings
+  scope: Namespaced
+---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  labels:
+    app.kubernetes.io/name: azure-agic-ingress
+  name: azureidentities.aadpodidentity.k8s.io
+spec:
+  group: aadpodidentity.k8s.io
+  version: v1
+  names:
+    kind: AzureIdentity
+    singular: azureidentity
+    plural: azureidentities
+  scope: Namespaced
+---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  labels:
+    app.kubernetes.io/name: azure-agic-ingress
+  name: azurepodidentityexceptions.aadpodidentity.k8s.io
+spec:
+  group: aadpodidentity.k8s.io
+  version: v1
+  names:
+    kind: AzurePodIdentityException
+    singular: azurepodidentityexception
+    plural: azurepodidentityexceptions
+  scope: Namespaced
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: azure-agic-ingress
+  name: aad-pod-id-nmi-role
+rules:
+- apiGroups: ["apiextensions.k8s.io"]
+  resources: ["customresourcedefinitions"]
+  verbs: ["get", "list"]
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get"]
+- apiGroups: ["aadpodidentity.k8s.io"]
+  resources: ["azureidentitybindings", "azureidentities", "azurepodidentityexceptions"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["aadpodidentity.k8s.io"]
+  resources: ["azureassignedidentities"]
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: aad-pod-id-nmi-binding
+  labels:
+    k8s-app: aad-pod-id-nmi-binding
+    app.kubernetes.io/name: azure-agic-ingress
+subjects:
+- kind: ServiceAccount
+  name: aad-pod-id-nmi-service-account
+  namespace: migaportal-controller
+roleRef:
+  kind: ClusterRole
+  name: aad-pod-id-nmi-role
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    app.kubernetes.io/name: azure-agic-ingress
+    component: nmi
+    tier: node
+    k8s-app: aad-pod-id
+  name: nmi
+  namespace: migaportal-controller
+spec:
+  updateStrategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      component: nmi
+      tier: node
+      app.kubernetes.io/name: azure-agic-ingress
+  template:
+    metadata:
+      labels:
+        component: nmi
+        tier: node
+        app.kubernetes.io/name: azure-agic-ingress
+    spec:
+      serviceAccountName: aad-pod-id-nmi-service-account
+      hostNetwork: true
+      volumes:
+      - hostPath:
+          path: /run/xtables.lock
+          type: FileOrCreate
+        name: iptableslock
+      containers:
+      - name: nmi
+        image: "mcr.microsoft.com/k8s/aad-pod-identity/nmi:1.6.0"
+        imagePullPolicy: Always
+        args:
+          - "--host-ip=$(HOST_IP)"
+          - "--node=$(NODE_NAME)"
+        env:
+          - name: HOST_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+          - name: NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+        resources:
+          limits:
+            cpu: 200m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 256Mi
+        securityContext:
+          privileged: true
+          capabilities:
+            add:
+            - NET_ADMIN
+        volumeMounts:
+        - mountPath: /run/xtables.lock
+          name: iptableslock
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app.kubernetes.io/name: azure-agic-ingress
+  name: aad-pod-id-mic-service-account
+  namespace: migaportal-controller
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: azure-agic-ingress
+  name: aad-pod-id-mic-role
+rules:
+- apiGroups: ["apiextensions.k8s.io"]
+  resources: ["customresourcedefinitions"]
+  verbs: ["*"]
+- apiGroups: [""]
+  resources: ["pods", "nodes"]
+  verbs: [ "list", "watch" ]
+- apiGroups: [""]
+  resources: ["events"]
+  verbs: ["create", "patch"]
+- apiGroups: [""]
+  resources: ["configmaps"]
+  verbs: ["get", "create", "update"]
+- apiGroups: [""]
+  resources: ["endpoints"]
+  verbs: ["create", "get","update"]
+- apiGroups: ["aadpodidentity.k8s.io"]
+  resources: ["azureidentitybindings", "azureidentities"]
+  verbs: ["get", "list", "watch", "post", "update"]
+- apiGroups: ["aadpodidentity.k8s.io"]
+  resources: ["azurepodidentityexceptions"]
+  verbs: ["list", "update"]
+- apiGroups: ["aadpodidentity.k8s.io"]
+  resources: ["azureassignedidentities"]
+  verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: aad-pod-id-mic-binding
+  labels:
+    k8s-app: aad-pod-id-mic-binding
+    app.kubernetes.io/name: azure-agic-ingress
+subjects:
+- kind: ServiceAccount
+  name: aad-pod-id-mic-service-account
+  namespace: migaportal-controller
+roleRef:
+  kind: ClusterRole
+  name: aad-pod-id-mic-role
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: azure-agic-ingress
+    component: mic
+    k8s-app: aad-pod-id
+  name: mic
+  namespace: migaportal-controller
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      component: mic
+      app: mic
+      app.kubernetes.io/name: azure-agic-ingress
+  template:
+    metadata:
+      labels:
+        component: mic
+        app: mic
+        app.kubernetes.io/name: azure-agic-ingress
+    spec:
+      serviceAccountName: aad-pod-id-mic-service-account
+      containers:
+      - name: mic
+        image: "mcr.microsoft.com/k8s/aad-pod-identity/mic:1.6.0"
+        imagePullPolicy: Always
+        args:
+          - "--cloudconfig=/etc/kubernetes/azure.json"
+          - "--logtostderr"
+        env:
+        - name: MIC_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace                
+        resources:
+          limits:
+            cpu: 200m
+            memory: 1024Mi
+          requests:
+            cpu: 100m
+            memory: 256Mi
+        volumeMounts:
+        - name: k8s-azure-file
+          mountPath: /etc/kubernetes/azure.json
+          readOnly: true
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      volumes:
+      - name: k8s-azure-file
+        hostPath:
+          path: /etc/kubernetes/azure.json
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app.kubernetes.io/name: azure-agic-ingress
+  name: ingress-azure
+  namespace: migaportal-controller
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    app.kubernetes.io/name: azure-agic-ingress
+  name: networking-appgw-k8s-azure-service-principal
+  namespace: migaportal-controller
+type: Opaque
+data:
+  armAuth.json: "ewogICJjbGllbnRJZCI6YiLAogICJjbGllbnRTZWNyZXQiOiAmtZbDYzZWRObjVNQlgtdENlQiIsCiAgInN1YnNjcmlwdGlvbklkIjogImEwODA4NTgzLTM0MWUtNDI1OS1hN2Y4LTEwMzMxNTQ2Nzk4ZiIsCiAgInRlbmFudElkIjogImVkZjQ0MmY1LWI5OTQtNGM4Ni1hMTMxLWI0MmIwM2ExNmM5NSIsCiAgImFjdGl2ZURpcmVjdG9yeUVuZHBvaW50VXJsIjogImh0dHBzOi8vbG9naW4ubWljcm9zb2Z0b25saW5lLmNvbSIsCiAgInJlc291cmNlTWFuYWdlckVuZHBvaW50VXJsIjogImh0dHBzOi8vbWFuYWdlbWVudC5henVyZS5jb20vIiwKICAiYWN0aXZlRGlyZWN0b3J5R3JhcGhSZXNvdXJjZUlkIjogImh0dHBzOi8vZ3JhcGgud2luZG93cy5uZXQvIiwKICAic3FsTWFuYWdlbWVudEVuZHBvaW50VXJsIjogImh0dHBzOi8vbWFuYWdlbWVudC5jb3JlLndpbmRvd3MubmV0Ojg0NDMvIiwKICAiZ2FsbGVyeUVuZHBvaW50VXJsIjogImh0dHBzOi8vZ2FsbGVyeS5henVyZS5jb20vIiwKICAibWFuYWdlbWVudEVuZHBvaW50VXJsIjogImh0dHBzOi8vbWFuYWdlbWVudC5jb3JlLndpbmRvd3MubmV0LyIKfQo="
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-azure
+  namespace: migaportal-controller
+  labels:
+    app.kubernetes.io/name: azure-agic-ingress
+data:
+  APPGW_VERBOSITY_LEVEL: "3"
+  HTTP_SERVICE_PORT:     "8123"
+  APPGW_SUBSCRIPTION_ID: "b078793-341e-4259-a7f8-10331546798f"
+  APPGW_RESOURCE_GROUP:  "miga-portal-dev"
+  APPGW_NAME:            "agw-demoslock-dev"
+  APPGW_SUBNET_NAME: "agw-demoslock-dev-subnet"
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: azure-agic-ingress
+  name: ingress-azure
+rules:
+- apiGroups:
+    - ""
+  resources:
+    - configmaps
+    - endpoints
+    - pods
+    - secrets
+    - namespaces
+    - services
+    - events
+    - nodes
+  verbs:
+    - get
+    - list
+    - watch
+- apiGroups:
+    - "appgw.ingress.k8s.io"
+    - "networking.istio.io"
+  resources:
+    - "*"
+  verbs:
+    - get
+    - list
+    - watch
+- apiGroups:
+    - extensions
+  resources:
+    - ingresses
+  verbs:
+    - get
+    - list
+    - watch
+- apiGroups:
+    - extensions
+  resources:
+    - ingresses/status
+  verbs:
+    - update
+- apiGroups:
+    - ""
+  resources:
+    - events
+  verbs:
+    - create
+    - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/name: azure-agic-ingress
+  name: ingress-azure
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: ingress-azure
+subjects:
+  - kind: ServiceAccount
+    name: ingress-azure
+    namespace: migaportal-controller
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ingress-azure
+  namespace: migaportal-controller
+  labels:
+    app.kubernetes.io/name: azure-agic-ingress
+spec:
+  replicas: 1 # TODO: Make configurable when leader election is supported.
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: azure-agic-ingress
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: azure-agic-ingress
+      annotations:
+        checksum/config: 8d924e2266a9d1166858c02b84f2e73d5c3068ee61f3e7ec0a8581d8f2bb65fa
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8123"
+    spec:
+      serviceAccountName: ingress-azure
+      containers:
+      - name: ingress-azure
+        image: mcr.microsoft.com/azure-application-gateway/kubernetes-ingress:1.2.1
+        imagePullPolicy: Always
+        readinessProbe:
+          httpGet:
+            path: /health/ready
+            port: 8123
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /health/alive
+            port: 8123
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        env:
+        - name: AZURE_CLOUD_PROVIDER_LOCATION
+          value: /etc/appgw/azure.json
+        - name: AGIC_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: AGIC_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: AZURE_AUTH_LOCATION
+          value: /etc/Azure/Networking-AppGW/auth/armAuth.json
+        envFrom:
+        - configMapRef:
+            name: ingress-azure
+        volumeMounts:
+        - mountPath: /etc/appgw/azure.json
+          name: azure
+        - name: networking-appgw-k8s-azure-service-principal-mount
+          mountPath: /etc/Azure/Networking-AppGW/auth
+          readOnly: true
+      volumes:
+      - name: azure
+        hostPath:
+          path: /etc/kubernetes/azure.json
+          type: File
+      - name: networking-appgw-k8s-azure-service-principal-mount
+        secret:
+          secretName: networking-appgw-k8s-azure-service-principal
