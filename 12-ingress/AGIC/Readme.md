@@ -1,6 +1,6 @@
 kubernetes azure application gateway ingress controller (rbac)
 
-    The ingress controller runs as a pod within the AKS cluster. It consumes Kubernetes Ingress Resources and converts them to an Azure Application Gateway configuration which allows the gateway to load-balance traffic to Kubernetes pods.
+   The ingress controller runs as a pod within the AKS cluster. It consumes Kubernetes Ingress Resources and converts them to an Azure Application Gateway configuration which allows the gateway to load-balance traffic to Kubernetes pods.
 
 Identity
 
@@ -33,11 +33,11 @@ Requirements Pods
 
 Managed Identity Controller (MIC)
 
-    It runs with multiple replicas and one Pod is elected leader. It is responsible to do the assignment of the identity to the AKS nodes
+   It runs with multiple replicas and one Pod is elected leader. It is responsible to do the assignment of the identity to the AKS nodes
 
 Node Managed Identity (NMI)
 
-     It runs as daemon on every node. It is responsible to enforce the IP table rules to allow AGIC to GET the access token
+   It runs as daemon on every node. It is responsible to enforce the IP table rules to allow AGIC to GET the access token
 
 Require variables for Service Principle :
 
@@ -69,7 +69,7 @@ To find the resources use labels
 
 commandLine
 
-    kubectl get ServiceAccount,configmap,secret,pods,deployment,replicaset,daemonset,CustomResourceDefinition,ClusterRole,ClusterRoleBinding -l app.kubernetes.io/name=azure-agic-ingress -A
+   kubectl get ServiceAccount,configmap,secret,pods,deployment,replicaset,daemonset,CustomResourceDefinition,ClusterRole,ClusterRoleBinding -l app.kubernetes.io/name=azure-agic-ingress -A
 
 Require api components:
 
