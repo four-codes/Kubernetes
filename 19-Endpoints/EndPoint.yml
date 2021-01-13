@@ -1,0 +1,27 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mongo
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+
+# You might notice there are no Pod selectors for this service. 
+# This creates a service, but it doesn’t know where to send the traffic. 
+# This allows you to manually create an Endpoints object that will receive traffic from this service.
+
+---
+kind: Endpoints
+apiVersion: v1
+metadata:
+  name: mongo
+subsets:
+  - addresses:
+      - ip: 11x.xxx.xxx.xxx
+    ports:
+      - port: 80
+# You can see that the Endpoints manually defines the IP address for the database, and it uses the same name as the service. 
+# Kubernetes uses all the IP addresses defined in the Endpoints as if they were regular Kubernetes Pods.
