@@ -11,8 +11,8 @@ Requirement packages
 
 Prerequites:
 
-echo "10.0.0.6 master-server-1" | sudo tee -a /etc/hosts
-echo "10.0.0.7 master-server-2" | sudo tee -a /etc/hosts
+    echo "10.0.0.6 master-server-1" | sudo tee -a /etc/hosts
+    echo "10.0.0.7 master-server-2" | sudo tee -a /etc/hosts
 
 
 Installtion
@@ -50,3 +50,13 @@ Then you can join any number of worker nodes by running the following on each as
 You should now deploy a pod network to the cluster.
 
     $ kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter-all-features.yaml
+    
+ verify:
+    
+    master-server-1
+    
+        kubectl get all
+        
+    master-server-2
+        
+        kubectl get all
