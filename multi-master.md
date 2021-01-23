@@ -36,11 +36,11 @@ master-server-1 to master-server-2
 
     scp -r $HOME/.kube node@master-server-2:/HOME/node/.kube
 
-You can now join any number of the control-plane node running the following command on each as root:
+You can now join any number of the control-plane node running the following command on each as root: (second master initiate)
 
-  kubeadm join 10.0.0.6:6443 --token i3tmvq.yhq7a6vp6exuajhj \
-    --discovery-token-ca-cert-hash sha256:41da242f31ccefff945dd521d209ef3e900fa95ab35df0839fad99c6ab10a20e \
-    --control-plane --certificate-key fba12263ee5e9fd9fb223cf478722c6541c0e098e77127d6d4c7ee40bc845a30
+      kubeadm join 10.0.0.6:6443 --token i3tmvq.yhq7a6vp6exuajhj \
+        --discovery-token-ca-cert-hash sha256:41da242f31ccefff945dd521d209ef3e900fa95ab35df0839fad99c6ab10a20e \
+        --control-plane --certificate-key fba12263ee5e9fd9fb223cf478722c6541c0e098e77127d6d4c7ee40bc845a30
 
 Then you can join any number of worker nodes by running the following on each as root:
 
