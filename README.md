@@ -76,6 +76,10 @@ Installtion
     
     # export kubever=$(kubectl version | base64 | tr -d '\n')
     # kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
+    
+    or 
+    
+    # kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter-all-features.yaml
 
 Cluster Verification Process
 
