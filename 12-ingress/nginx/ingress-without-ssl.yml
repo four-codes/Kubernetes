@@ -34,3 +34,21 @@ spec:
     app: web-server
   ports:
   - port: 80
+---
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test-http
+  namespace: animals
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: jayecluster.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: animals-lion-server-service
+          servicePort: 80
