@@ -1,3 +1,13 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: managed-premium-retain-one
+provisioner: kubernetes.io/azure-disk
+reclaimPolicy: Retain
+allowVolumeExpansion: true
+parameters:
+  storageaccounttype: Premium_LRS
+  kind: Managed
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -6,10 +16,10 @@ metadata:
 spec:
   accessModes:
   - ReadWriteOnce
-  storageClassName: managed-premium-retain
+  storageClassName: managed-premium-retain-one
   resources:
     requests:
-      storage: 5Gi
+      storage: 7Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -23,7 +33,7 @@ spec:
       maxUnavailable: 1
   revisionHistoryLimit: 4
   paused: false
-  replicas: 2
+  replicas: 1
   minReadySeconds: 10
   selector:
     matchLabels:
@@ -69,4 +79,3 @@ spec:
   type: LoadBalancer
   ports:
   - port: 80
-
