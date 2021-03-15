@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-deploy
+  labels:
+    app: example-app
+    test: test
+  annotations:
+    fluxcd.io/tag.example-app: glob:1.0.*
+    fluxcd.io/automated: 'true'
+spec:
+  selector:
+    matchLabels:
+      app: example-app
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: example-app
+    spec:
+      containers:
+      - name: example-app
+        image: jjino/flux-demo:v1.0.1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+---
