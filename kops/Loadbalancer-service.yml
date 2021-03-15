@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+  revisionHistoryLimit: 4
+  paused: false
+  replicas: 2
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      role: webserver
+      tier: frond-end
+    matchExpressions:
+      - {key: version, operator: In, values: [v1, v2, v3]}
+  template:
+    metadata:
+      name: web
+      labels:
+        role: webserver
+        version: v1
+        tier: frond-end
+    spec:
+      containers:
+        - name: web
+          image: nginx
+          ports:
+            - containerPort: 80
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service
+  labels:
+    role: web-service
+spec:
+  selector:
+    role: webserver
+    version: v1
+    tier: frond-end
+  type: LoadBalancer
+  ports:
+    - port: 80

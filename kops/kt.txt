@@ -1,0 +1,540 @@
+NAME:   mon
+LAST DEPLOYED: Tue Dec 31 17:47:52 2019
+NAMESPACE: default
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1/Alertmanager
+NAME                                  AGE
+mon-prometheus-operator-alertmanager  66s
+
+==> v1/ClusterRole
+NAME                                    AGE
+mon-grafana-clusterrole                 66s
+mon-prometheus-operator-alertmanager    66s
+mon-prometheus-operator-operator        66s
+mon-prometheus-operator-operator-psp    66s
+mon-prometheus-operator-prometheus      66s
+mon-prometheus-operator-prometheus-psp  66s
+psp-mon-kube-state-metrics              66s
+psp-mon-prometheus-node-exporter        66s
+
+==> v1/ClusterRoleBinding
+NAME                                    AGE
+mon-grafana-clusterrolebinding          66s
+mon-prometheus-operator-alertmanager    66s
+mon-prometheus-operator-operator        66s
+mon-prometheus-operator-operator-psp    66s
+mon-prometheus-operator-prometheus      66s
+mon-prometheus-operator-prometheus-psp  66s
+psp-mon-kube-state-metrics              66s
+psp-mon-prometheus-node-exporter        66s
+
+==> v1/ConfigMap
+NAME                                                       AGE
+mon-grafana                                                67s
+mon-grafana-config-dashboards                              67s
+mon-grafana-test                                           67s
+mon-prometheus-operator-apiserver                          67s
+mon-prometheus-operator-cluster-total                      67s
+mon-prometheus-operator-controller-manager                 67s
+mon-prometheus-operator-etcd                               67s
+mon-prometheus-operator-grafana-datasource                 67s
+mon-prometheus-operator-k8s-coredns                        67s
+mon-prometheus-operator-k8s-resources-cluster              66s
+mon-prometheus-operator-k8s-resources-namespace            67s
+mon-prometheus-operator-k8s-resources-node                 67s
+mon-prometheus-operator-k8s-resources-pod                  67s
+mon-prometheus-operator-k8s-resources-workload             67s
+mon-prometheus-operator-k8s-resources-workloads-namespace  67s
+mon-prometheus-operator-kubelet                            67s
+mon-prometheus-operator-namespace-by-pod                   67s
+mon-prometheus-operator-namespace-by-workload              66s
+mon-prometheus-operator-node-cluster-rsrc-use              66s
+mon-prometheus-operator-node-rsrc-use                      67s
+mon-prometheus-operator-nodes                              67s
+mon-prometheus-operator-persistentvolumesusage             67s
+mon-prometheus-operator-pod-total                          67s
+mon-prometheus-operator-pods                               67s
+mon-prometheus-operator-prometheus                         67s
+mon-prometheus-operator-proxy                              67s
+mon-prometheus-operator-scheduler                          67s
+mon-prometheus-operator-statefulset                        67s
+mon-prometheus-operator-workload-total                     67s
+
+==> v1/DaemonSet
+NAME                          AGE
+mon-prometheus-node-exporter  66s
+
+==> v1/Deployment
+NAME                              AGE
+mon-grafana                       66s
+mon-kube-state-metrics            66s
+mon-prometheus-operator-operator  66s
+
+==> v1/Pod(related)
+NAME                                               AGE
+mon-grafana-5469c94f98-n7t84                       66s
+mon-kube-state-metrics-f8fb77df6-lkzvd             66s
+mon-prometheus-node-exporter-bgfmw                 66s
+mon-prometheus-node-exporter-h2gf9                 66s
+mon-prometheus-node-exporter-j9lcv                 66s
+mon-prometheus-operator-operator-76d74bd4fd-4sfjx  66s
+
+==> v1/Prometheus
+NAME                                AGE
+mon-prometheus-operator-prometheus  65s
+
+==> v1/PrometheusRule
+NAME                                                          AGE
+mon-prometheus-operator-alertmanager.rules                    64s
+mon-prometheus-operator-etcd                                  64s
+mon-prometheus-operator-general.rules                         64s
+mon-prometheus-operator-k8s.rules                             64s
+mon-prometheus-operator-kube-apiserver.rules                  64s
+mon-prometheus-operator-kube-prometheus-node-recording.rules  64s
+mon-prometheus-operator-kube-scheduler.rules                  64s
+mon-prometheus-operator-kubernetes-absent                     64s
+mon-prometheus-operator-kubernetes-apps                       64s
+mon-prometheus-operator-kubernetes-resources                  64s
+mon-prometheus-operator-kubernetes-storage                    64s
+mon-prometheus-operator-kubernetes-system                     64s
+mon-prometheus-operator-kubernetes-system-apiserver           64s
+mon-prometheus-operator-kubernetes-system-controller-manager  64s
+mon-prometheus-operator-kubernetes-system-kubelet             64s
+mon-prometheus-operator-kubernetes-system-scheduler           64s
+mon-prometheus-operator-node-exporter                         64s
+mon-prometheus-operator-node-exporter.rules                   64s
+mon-prometheus-operator-node-network                          64s
+mon-prometheus-operator-node-time                             64s
+mon-prometheus-operator-node.rules                            64s
+mon-prometheus-operator-prometheus                            64s
+mon-prometheus-operator-prometheus-operator                   64s
+
+==> v1/Role
+NAME              AGE
+mon-grafana-test  66s
+
+==> v1/RoleBinding
+NAME              AGE
+mon-grafana-test  66s
+
+==> v1/Secret
+NAME                                               AGE
+alertmanager-mon-prometheus-operator-alertmanager  67s
+mon-grafana                                        67s
+
+==> v1/Service
+NAME                                             AGE
+mon-grafana                                      66s
+mon-kube-state-metrics                           66s
+mon-prometheus-node-exporter                     66s
+mon-prometheus-operator-alertmanager             66s
+mon-prometheus-operator-coredns                  66s
+mon-prometheus-operator-kube-controller-manager  66s
+mon-prometheus-operator-kube-etcd                66s
+mon-prometheus-operator-kube-proxy               66s
+mon-prometheus-operator-kube-scheduler           66s
+mon-prometheus-operator-operator                 66s
+mon-prometheus-operator-prometheus               66s
+
+==> v1/ServiceAccount
+NAME                                  AGE
+mon-grafana                           66s
+mon-grafana-test                      66s
+mon-kube-state-metrics                66s
+mon-prometheus-node-exporter          66s
+mon-prometheus-operator-alertmanager  66s
+mon-prometheus-operator-operator      66s
+mon-prometheus-operator-prometheus    66s
+
+==> v1/ServiceMonitor
+NAME                                             AGE
+mon-prometheus-operator-alertmanager             63s
+mon-prometheus-operator-apiserver                63s
+mon-prometheus-operator-coredns                  63s
+mon-prometheus-operator-grafana                  63s
+mon-prometheus-operator-kube-controller-manager  63s
+mon-prometheus-operator-kube-etcd                63s
+mon-prometheus-operator-kube-proxy               63s
+mon-prometheus-operator-kube-scheduler           63s
+mon-prometheus-operator-kube-state-metrics       63s
+mon-prometheus-operator-kubelet                  63s
+mon-prometheus-operator-node-exporter            63s
+mon-prometheus-operator-operator                 63s
+mon-prometheus-operator-prometheus               63s
+
+==> v1beta1/ClusterRole
+NAME                    AGE
+mon-kube-state-metrics  66s
+
+==> v1beta1/ClusterRoleBinding
+NAME                    AGE
+mon-kube-state-metrics  66s
+
+==> v1beta1/MutatingWebhookConfiguration
+NAME                               AGE
+mon-prometheus-operator-admission  65s
+
+==> v1beta1/PodSecurityPolicy
+NAME                                  AGE
+mon-grafana                           67s
+mon-grafana-test                      67s
+mon-kube-state-metrics                67s
+mon-prometheus-node-exporter          67s
+mon-prometheus-operator-alertmanager  67s
+mon-prometheus-operator-operator      67s
+mon-prometheus-operator-prometheus    67s
+
+==> v1beta1/Role
+NAME         AGE
+mon-grafana  66s
+
+==> v1beta1/RoleBinding
+NAME         AGE
+mon-grafana  66s
+
+==> v1beta1/ValidatingWebhookConfiguration
+NAME                               AGE
+mon-prometheus-operator-admission  63s
+
+
+NOTES:
+The Prometheus Operator has been installed. Check its status by running:
+  kubectl --namespace default get pods -l "release=mon"
+
+Visit https://github.com/coreos/prometheus-operator for instructions on how
+to create & configure Alertmanager and Prometheus instances using the Operator.
+===========================================================================================
+
+user@demo:~/P2$ kubectl apply -f jino.yaml 
+
+
+customresourcedefinition.apiextensions.k8s.io/alertmanagers.monitoring.coreos.com configured
+customresourcedefinition.apiextensions.k8s.io/podmonitors.monitoring.coreos.com configured
+customresourcedefinition.apiextensions.k8s.io/prometheuses.monitoring.coreos.com configured
+customresourcedefinition.apiextensions.k8s.io/prometheusrules.monitoring.coreos.com configured
+customresourcedefinition.apiextensions.k8s.io/servicemonitors.monitoring.coreos.com configured
+
+clusterrole.rbac.authorization.k8s.io/mon-prom-prometheus-operat-admission created
+serviceaccount/mon-prom-prometheus-operat-admission created
+rolebinding.rbac.authorization.k8s.io/mon-prom-prometheus-operat-admission created
+job.batch/mon-prom-prometheus-operat-admission-create created
+role.rbac.authorization.k8s.io/mon-prom-prometheus-operat-admission created
+podsecuritypolicy.policy/mon-prom-prometheus-operat-admission created
+job.batch/mon-prom-prometheus-operat-admission-patch created
+clusterrolebinding.rbac.authorization.k8s.io/mon-prom-prometheus-operat-admission created
+
+
+podsecuritypolicy.policy/mon-prom-grafana created
+podsecuritypolicy.policy/mon-prom-grafana-test created
+podsecuritypolicy.policy/mon-prom-kube-state-metrics created
+podsecuritypolicy.policy/mon-prom-prometheus-node-exporter created
+podsecuritypolicy.policy/mon-prom-prometheus-operat-alertmanager created
+podsecuritypolicy.policy/mon-prom-prometheus-operat-operator created
+podsecuritypolicy.policy/mon-prom-prometheus-operat-prometheus created
+
+secret/mon-prom-grafana created
+secret/alertmanager-mon-prom-prometheus-operat-alertmanager created
+
+
+
+configmap/mon-prom-grafana-config-dashboards created
+configmap/mon-prom-grafana created
+configmap/mon-prom-grafana-test created
+configmap/mon-prom-prometheus-operat-grafana-datasource created
+configmap/mon-prom-prometheus-operat-apiserver created
+configmap/mon-prom-prometheus-operat-cluster-total created
+configmap/mon-prom-prometheus-operat-controller-manager created
+configmap/mon-prom-prometheus-operat-etcd created
+configmap/mon-prom-prometheus-operat-k8s-coredns created
+configmap/mon-prom-prometheus-operat-k8s-resources-cluster created
+configmap/mon-prom-prometheus-operat-k8s-resources-namespace created
+configmap/mon-prom-prometheus-operat-k8s-resources-node created
+configmap/mon-prom-prometheus-operat-k8s-resources-pod created
+configmap/mon-prom-prometheus-operat-k8s-resources-workload created
+configmap/mon-prom-prometheus-operat-k8s-resources-workloads-namespace created
+configmap/mon-prom-prometheus-operat-kubelet created
+configmap/mon-prom-prometheus-operat-namespace-by-pod created
+configmap/mon-prom-prometheus-operat-namespace-by-workload created
+configmap/mon-prom-prometheus-operat-node-cluster-rsrc-use created
+configmap/mon-prom-prometheus-operat-node-rsrc-use created
+configmap/mon-prom-prometheus-operat-nodes created
+configmap/mon-prom-prometheus-operat-persistentvolumesusage created ----> not need
+configmap/mon-prom-prometheus-operat-pod-total created
+configmap/mon-prom-prometheus-operat-pods created
+configmap/mon-prom-prometheus-operat-prometheus created
+configmap/mon-prom-prometheus-operat-proxy created
+configmap/mon-prom-prometheus-operat-scheduler created   -----------> not need
+configmap/mon-prom-prometheus-operat-statefulset created
+configmap/mon-prom-prometheus-operat-workload-total created
+
+
+
+serviceaccount/mon-prom-grafana created
+serviceaccount/mon-prom-grafana-test created
+serviceaccount/mon-prom-kube-state-metrics created
+serviceaccount/mon-prom-prometheus-node-exporter created
+serviceaccount/mon-prom-prometheus-operat-alertmanager created
+serviceaccount/mon-prom-prometheus-operat-operator created
+serviceaccount/mon-prom-prometheus-operat-prometheus created
+
+
+
+clusterrole.rbac.authorization.k8s.io/mon-prom-grafana-clusterrole created
+clusterrole.rbac.authorization.k8s.io/mon-prom-kube-state-metrics created
+clusterrole.rbac.authorization.k8s.io/psp-mon-prom-kube-state-metrics created
+clusterrole.rbac.authorization.k8s.io/psp-mon-prom-prometheus-node-exporter created
+clusterrole.rbac.authorization.k8s.io/mon-prom-prometheus-operat-alertmanager created
+clusterrole.rbac.authorization.k8s.io/mon-prom-prometheus-operat-operator created
+clusterrole.rbac.authorization.k8s.io/mon-prom-prometheus-operat-operator-psp created
+clusterrole.rbac.authorization.k8s.io/mon-prom-prometheus-operat-prometheus created
+clusterrole.rbac.authorization.k8s.io/mon-prom-prometheus-operat-prometheus-psp created
+
+
+
+clusterrolebinding.rbac.authorization.k8s.io/mon-prom-grafana-clusterrolebinding created
+clusterrolebinding.rbac.authorization.k8s.io/mon-prom-kube-state-metrics created
+clusterrolebinding.rbac.authorization.k8s.io/psp-mon-prom-kube-state-metrics created
+clusterrolebinding.rbac.authorization.k8s.io/psp-mon-prom-prometheus-node-exporter created
+clusterrolebinding.rbac.authorization.k8s.io/mon-prom-prometheus-operat-alertmanager created
+clusterrolebinding.rbac.authorization.k8s.io/mon-prom-prometheus-operat-operator created
+clusterrolebinding.rbac.authorization.k8s.io/mon-prom-prometheus-operat-operator-psp created
+clusterrolebinding.rbac.authorization.k8s.io/mon-prom-prometheus-operat-prometheus created
+clusterrolebinding.rbac.authorization.k8s.io/mon-prom-prometheus-operat-prometheus-psp created
+
+
+role.rbac.authorization.k8s.io/mon-prom-grafana created
+role.rbac.authorization.k8s.io/mon-prom-grafana-test created
+rolebinding.rbac.authorization.k8s.io/mon-prom-grafana created
+rolebinding.rbac.authorization.k8s.io/mon-prom-grafana-test created
+
+
+service/mon-prom-grafana created
+service/mon-prom-kube-state-metrics created
+service/mon-prom-prometheus-node-exporter created
+service/mon-prom-prometheus-operat-alertmanager created
+service/mon-prom-prometheus-operat-coredns created
+service/mon-prom-prometheus-operat-kube-controller-manager created
+service/mon-prom-prometheus-operat-kube-etcd created
+service/mon-prom-prometheus-operat-kube-proxy created
+service/mon-prom-prometheus-operat-kube-scheduler created
+service/mon-prom-prometheus-operat-operator created
+service/mon-prom-prometheus-operat-prometheus created
+
+
+daemonset.apps/mon-prom-prometheus-node-exporter created
+
+
+
+deployment.apps/mon-prom-grafana created
+deployment.apps/mon-prom-kube-state-metrics created
+deployment.apps/mon-prom-prometheus-operat-operator created
+
+
+alertmanager.monitoring.coreos.com/mon-prom-prometheus-operat-alertmanager created
+
+
+mutatingwebhookconfiguration.admissionregistration.k8s.io/mon-prom-prometheus-operat-admission created
+
+
+prometheus.monitoring.coreos.com/mon-prom-prometheus-operat-prometheus created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-alertmanager.rules created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-etcd created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-general.rules created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-k8s.rules created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kube-apiserver.rules created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kube-prometheus-node-recording.rules created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kube-scheduler.rules created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kubernetes-absent created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kubernetes-apps created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kubernetes-resources created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kubernetes-storage created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kubernetes-system-apiserver created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kubernetes-system-controller-manager created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kubernetes-system-kubelet created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kubernetes-system-scheduler created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kubernetes-system created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-node-exporter.rules created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-node-exporter created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-node-network created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-node-time created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-node.rules created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-prometheus-operator created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-prometheus created
+
+
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-alertmanager created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-coredns created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-apiserver created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-kube-controller-manager created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-kube-etcd created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-kube-proxy created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-kube-scheduler created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-kube-state-metrics created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-kubelet created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-node-exporter created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-grafana created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-operator created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-prometheus created
+
+
+
+
+
+validatingwebhookconfiguration.admissionregistration.k8s.io/mon-prom-prometheus-operat-admission created
+Error from server (Forbidden): error when creating "jino.yaml": pods "mon-grafana-test" is forbidden: error looking up service account default/mon-prom-grafana-test: serviceaccount "mon-prom-grafana-test" not found
+
+
+
+kubectl delete --ignore-not-found customresourcedefinitions \
+  prometheuses.monitoring.coreos.com \
+  servicemonitors.monitoring.coreos.com \
+  podmonitors.monitoring.coreos.com \
+  alertmanagers.monitoring.coreos.com \
+  prometheusrules.monitoring.coreos.com \
+  alertmanagers.monitoring.coreos.com
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+customresourcedefinition.apiextensions.k8s.io/alertmanagers.monitoring.coreos.com created
+customresourcedefinition.apiextensions.k8s.io/podmonitors.monitoring.coreos.com created
+customresourcedefinition.apiextensions.k8s.io/prometheuses.monitoring.coreos.com created
+customresourcedefinition.apiextensions.k8s.io/prometheusrules.monitoring.coreos.com created
+customresourcedefinition.apiextensions.k8s.io/servicemonitors.monitoring.coreos.com created
+clusterrole.rbac.authorization.k8s.io/mon-prom-prometheus-operat-admission created
+serviceaccount/mon-prom-prometheus-operat-admission created
+rolebinding.rbac.authorization.k8s.io/mon-prom-prometheus-operat-admission created
+job.batch/mon-prom-prometheus-operat-admission-create created
+role.rbac.authorization.k8s.io/mon-prom-prometheus-operat-admission created
+podsecuritypolicy.policy/mon-prom-prometheus-operat-admission created
+job.batch/mon-prom-prometheus-operat-admission-patch created
+clusterrolebinding.rbac.authorization.k8s.io/mon-prom-prometheus-operat-admission created
+podsecuritypolicy.policy/mon-prom-grafana created
+podsecuritypolicy.policy/mon-prom-grafana-test created
+podsecuritypolicy.policy/mon-prom-kube-state-metrics created
+podsecuritypolicy.policy/mon-prom-prometheus-node-exporter created
+podsecuritypolicy.policy/mon-prom-prometheus-operat-alertmanager created
+podsecuritypolicy.policy/mon-prom-prometheus-operat-operator created
+podsecuritypolicy.policy/mon-prom-prometheus-operat-prometheus created
+secret/mon-prom-grafana created
+secret/alertmanager-mon-prom-prometheus-operat-alertmanager created
+configmap/mon-prom-grafana-config-dashboards created
+configmap/mon-prom-grafana created
+configmap/mon-prom-grafana-test created
+configmap/mon-prom-prometheus-operat-grafana-datasource created
+configmap/mon-prom-prometheus-operat-apiserver created
+configmap/mon-prom-prometheus-operat-cluster-total created
+configmap/mon-prom-prometheus-operat-controller-manager created
+configmap/mon-prom-prometheus-operat-etcd created
+configmap/mon-prom-prometheus-operat-k8s-coredns created
+configmap/mon-prom-prometheus-operat-k8s-resources-cluster created
+configmap/mon-prom-prometheus-operat-k8s-resources-namespace created
+configmap/mon-prom-prometheus-operat-k8s-resources-node created
+configmap/mon-prom-prometheus-operat-k8s-resources-pod created
+configmap/mon-prom-prometheus-operat-k8s-resources-workload created
+configmap/mon-prom-prometheus-operat-k8s-resources-workloads-namespace created
+configmap/mon-prom-prometheus-operat-kubelet created
+configmap/mon-prom-prometheus-operat-namespace-by-pod created
+configmap/mon-prom-prometheus-operat-namespace-by-workload created
+configmap/mon-prom-prometheus-operat-node-cluster-rsrc-use created
+configmap/mon-prom-prometheus-operat-node-rsrc-use created
+configmap/mon-prom-prometheus-operat-nodes created
+configmap/mon-prom-prometheus-operat-persistentvolumesusage created
+configmap/mon-prom-prometheus-operat-pod-total created
+configmap/mon-prom-prometheus-operat-pods created
+configmap/mon-prom-prometheus-operat-prometheus created
+configmap/mon-prom-prometheus-operat-proxy created
+configmap/mon-prom-prometheus-operat-scheduler created
+configmap/mon-prom-prometheus-operat-statefulset created
+configmap/mon-prom-prometheus-operat-workload-total created
+serviceaccount/mon-prom-grafana created
+serviceaccount/mon-prom-grafana-test created
+serviceaccount/mon-prom-kube-state-metrics created
+serviceaccount/mon-prom-prometheus-node-exporter created
+serviceaccount/mon-prom-prometheus-operat-alertmanager created
+serviceaccount/mon-prom-prometheus-operat-operator created
+serviceaccount/mon-prom-prometheus-operat-prometheus created
+clusterrole.rbac.authorization.k8s.io/mon-prom-grafana-clusterrole created
+clusterrole.rbac.authorization.k8s.io/mon-prom-kube-state-metrics created
+clusterrole.rbac.authorization.k8s.io/psp-mon-prom-kube-state-metrics created
+clusterrole.rbac.authorization.k8s.io/psp-mon-prom-prometheus-node-exporter created
+clusterrole.rbac.authorization.k8s.io/mon-prom-prometheus-operat-alertmanager created
+clusterrole.rbac.authorization.k8s.io/mon-prom-prometheus-operat-operator created
+clusterrole.rbac.authorization.k8s.io/mon-prom-prometheus-operat-operator-psp created
+clusterrole.rbac.authorization.k8s.io/mon-prom-prometheus-operat-prometheus created
+clusterrole.rbac.authorization.k8s.io/mon-prom-prometheus-operat-prometheus-psp created
+clusterrolebinding.rbac.authorization.k8s.io/mon-prom-grafana-clusterrolebinding created
+clusterrolebinding.rbac.authorization.k8s.io/mon-prom-kube-state-metrics created
+clusterrolebinding.rbac.authorization.k8s.io/psp-mon-prom-kube-state-metrics created
+clusterrolebinding.rbac.authorization.k8s.io/psp-mon-prom-prometheus-node-exporter created
+clusterrolebinding.rbac.authorization.k8s.io/mon-prom-prometheus-operat-alertmanager created
+clusterrolebinding.rbac.authorization.k8s.io/mon-prom-prometheus-operat-operator created
+clusterrolebinding.rbac.authorization.k8s.io/mon-prom-prometheus-operat-operator-psp created
+clusterrolebinding.rbac.authorization.k8s.io/mon-prom-prometheus-operat-prometheus created
+clusterrolebinding.rbac.authorization.k8s.io/mon-prom-prometheus-operat-prometheus-psp created
+role.rbac.authorization.k8s.io/mon-prom-grafana created
+role.rbac.authorization.k8s.io/mon-prom-grafana-test created
+rolebinding.rbac.authorization.k8s.io/mon-prom-grafana created
+rolebinding.rbac.authorization.k8s.io/mon-prom-grafana-test created
+service/mon-prom-grafana created
+service/mon-prom-kube-state-metrics created
+service/mon-prom-prometheus-node-exporter created
+service/mon-prom-prometheus-operat-alertmanager created
+service/mon-prom-prometheus-operat-coredns created
+service/mon-prom-prometheus-operat-kube-controller-manager created
+service/mon-prom-prometheus-operat-kube-etcd created
+service/mon-prom-prometheus-operat-kube-proxy created
+service/mon-prom-prometheus-operat-kube-scheduler created
+service/mon-prom-prometheus-operat-operator created
+service/mon-prom-prometheus-operat-prometheus created
+daemonset.apps/mon-prom-prometheus-node-exporter created
+deployment.apps/mon-prom-grafana created
+deployment.apps/mon-prom-kube-state-metrics created
+deployment.apps/mon-prom-prometheus-operat-operator created
+alertmanager.monitoring.coreos.com/mon-prom-prometheus-operat-alertmanager created
+mutatingwebhookconfiguration.admissionregistration.k8s.io/mon-prom-prometheus-operat-admission created
+prometheus.monitoring.coreos.com/mon-prom-prometheus-operat-prometheus created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-alertmanager.rules created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-etcd created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-general.rules created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-k8s.rules created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kube-apiserver.rules created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kube-prometheus-node-recording.rules created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kube-scheduler.rules created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kubernetes-absent created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kubernetes-apps created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kubernetes-resources created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kubernetes-storage created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kubernetes-system-apiserver created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kubernetes-system-controller-manager created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kubernetes-system-kubelet created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kubernetes-system-scheduler created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-kubernetes-system created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-node-exporter.rules created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-node-exporter created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-node-network created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-node-time created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-node.rules created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-prometheus-operator created
+prometheusrule.monitoring.coreos.com/mon-prom-prometheus-operat-prometheus created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-alertmanager created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-coredns created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-apiserver created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-kube-controller-manager created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-kube-etcd created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-kube-proxy created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-kube-scheduler created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-kube-state-metrics created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-kubelet created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-node-exporter created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-grafana created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-operator created
+servicemonitor.monitoring.coreos.com/mon-prom-prometheus-operat-prometheus created
+validatingwebhookconfiguration.admissionregistration.k8s.io/mon-prom-prometheus-operat-admission created
+
+
+
+
+
+
