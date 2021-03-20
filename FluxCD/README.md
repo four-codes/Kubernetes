@@ -13,3 +13,6 @@
     3. Repositary
     4. Docker image ( Public / Private Repositary)
     
+Reference
+
+      https://docs.fluxcd.io/en/1.18.0/index.html
