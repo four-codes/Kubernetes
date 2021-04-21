@@ -74,7 +74,7 @@ main.yml
     on:
       schedule:
         # * is a special character in YAML so you have to quote this string
-        - cron:  '*/30 5,17 * * *'
+        - cron:  '0 */1 * * *'
 
     env:
       PROJECT_ID: ${{ secrets.GKE_PROJECT }}
