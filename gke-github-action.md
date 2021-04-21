@@ -79,8 +79,6 @@ main.yml
       PROJECT_ID: ${{ secrets.GKE_PROJECT }}
       GKE_CLUSTER: cluster-1    # Add your cluster name here.
       GKE_ZONE: us-central1-c   # Add your cluster zone here.
-      DEPLOYMENT_NAME: gke-test # Add your deployment name here.
-      IMAGE: static-site
 
     jobs:
       setup-build-publish-deploy:
