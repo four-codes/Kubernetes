@@ -18,3 +18,9 @@ create the gke cluster
     $ gcloud container clusters create $GKE_CLUSTER --project=$GKE_PROJECT --zone=$GKE_ZONE
     
     
+Enabling the APIs
+  
+    Enable the Kubernetes Engine and Container Registry APIs. For example:
+    
+    $ gcloud services enable containerregistry.googleapis.com
+    $ gcloud services enable container.googleapis.com
