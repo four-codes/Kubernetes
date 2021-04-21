@@ -17,9 +17,9 @@
       name: deployment-clusterrole
       namespace: app-teaml
     subjects:
-      - kind: ServiceAccount
-        name: cicd-token
-        namespace: app-teaml
+    - kind: ServiceAccount
+      name: cicd-token
+      namespace: app-teaml
     roleRef:
       kind: Role
       name: deployment-clusterrole
