@@ -28,17 +28,20 @@ Enabling the APIs
 Create a new service account:
 
     $ gcloud iam service-accounts create $SA_NAME
-    Retrieve the email address of the service account you just created:
+    
+Retrieve the email address of the service account you just created:
 
     $ gcloud iam service-accounts list
-    Add roles to the service account. Note: Apply more restrictive roles to suit your requirements.
+
+Add roles to the service account. Note: Apply more restrictive roles to suit your requirements.
 
     $ gcloud projects add-iam-policy-binding $GKE_PROJECT --member=serviceAccount:$SA_EMAIL --role=roles/container.admin --role=roles/storage.admin
     
 Download the JSON keyfile for the service account:
 
     $ gcloud iam service-accounts keys create key.json --iam-account=$SA_EMAIL
-    Store the project ID as a secret named GKE_PROJECT:
+    
+Store the project ID as a secret named GKE_PROJECT:
 
     $ export GKE_SA_KEY=$(cat key.json | base64)
     $ echo $GKE_SA_KEY
