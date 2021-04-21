@@ -44,11 +44,14 @@ Download the JSON keyfile for the service account:
 Store the project ID as a secret named GKE_PROJECT:
 
     $ export GKE_SA_KEY=$(cat key.json | base64)
-    $ echo $GKE_SA_KEY
+    $ echo $GKE_SA_KEY (cpoy it)
 
 Configuring a service account and storing its credentials
 
 -------
-      This procedure demonstrates how to create the service account for your GKE integration. It explains how to create the account, add roles to it, retrieve its keys, and store them as a base64-encoded encrypted repository secret named GKE_SA_KEY 
+      This procedure demonstrates how to create the service account for your GKE integration. 
+      It explains how to create the account, add roles to it, retrieve its keys, and store them as a base64-encoded encrypted
+      repository secret named GKE_SA_KEY 
       
+      https://docs.github.com/en/actions/reference/encrypted-secrets
 -------
