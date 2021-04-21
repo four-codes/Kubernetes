@@ -9,3 +9,12 @@ Creating a GKE cluster
     3. gcloud CLI and Cloud SDK
   
 ------------
+
+
+create the gke cluster
+
+    $ GKE_PROJECT=xxxx
+    $ GKE_ZONE=xxxx
+    $ gcloud container clusters create $GKE_CLUSTER --project=$GKE_PROJECT --zone=$GKE_ZONE
+    
+    
