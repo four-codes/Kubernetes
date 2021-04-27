@@ -1,0 +1,67 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: nifi-azure-file-share
+provisioner: kubernetes.io/azure-file
+mountOptions:
+  - dir_mode=0777
+  - file_mode=0777
+  - uid=0
+  - gid=0
+  - mfsymlinks
+  - cache=strict
+  - actimeo=30
+parameters:
+  skuName: Standard_LRS
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nifi-azure-file-share-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: nifi-azure-file-share
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+  labels:
+    client: lion
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 0 
+      maxUnavailable: 1
+    type: RollingUpdate
+  replicas: 3
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      role: webserver
+      version: v1
+  template:
+    metadata:
+      name: web
+      labels:
+        role: webserver
+        version: v1
+    spec:
+      containers:
+      - name: web
+        image: jjino/web-app:v1
+        ports:
+        - name: http
+          containerPort: 80
+          protocol: TCP
+        volumeMounts:
+        - mountPath: "/mnt/azure"
+          name: volume
+      volumes:
+        - name: volume
+          persistentVolumeClaim:
+            claimName: nifi-azure-file-share-pvc
