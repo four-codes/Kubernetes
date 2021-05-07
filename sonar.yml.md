@@ -111,7 +111,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: "20m"
 spec:
   rules:
-  - host: sonar.tspring.co
+  - host: sonar.fourtimes.ml
     http:
       paths:
       - path: / 
