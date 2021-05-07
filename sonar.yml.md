@@ -124,7 +124,7 @@ spec:
 #  2006  mv sonar-scanner-4.2.0.1873-linux /opt/sonar-scanner
 #  2009  export PATH=$PATH:/opt/sonar-scanner/bin
 #  2010  sonar-scanner -v
-#  2012  sonar-scanner   -Dsonar.projectKey=demo   -Dsonar.sources=.   -Dsonar.host.url=https://sonar.tspring.co   -Dsonar.login=2d911a190a4f0cb75985babb79a
+#  2012  sonar-scanner   -Dsonar.projectKey=demo   -Dsonar.sources=.   -Dsonar.host.url=https://sonar.fourtimes.ml   -Dsonar.login=2d911a190a4f0cb75985babb79a
 
 
 ```
