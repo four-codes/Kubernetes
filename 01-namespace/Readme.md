@@ -56,7 +56,7 @@ test Run
 diffrence between yml vs json
 
     # json format
-
+```json
     {
     "apiVersion": "v1",
     "kind": "Namespace",
@@ -67,7 +67,8 @@ diffrence between yml vs json
         }
     }
     }
-
+```
+```yaml
     # Yml format  
     ---
     apiVersion: v1
@@ -76,3 +77,5 @@ diffrence between yml vs json
       name: animals
       labels:
         name: lion
+        
+```
