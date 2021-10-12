@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tring-configmap
+data:
+  tring.json: |
+    {
+      "type": "service_account",
+      "project_id": "xxxx-staging",
+    }
