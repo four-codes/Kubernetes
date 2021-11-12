@@ -5,7 +5,6 @@ metadata:
   name: animal-web-server
   labels:
     environment: production
-    app: nginx
 spec:
   containers:
   - name: animal-web-server
