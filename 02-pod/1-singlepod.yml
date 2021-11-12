@@ -8,6 +8,6 @@ metadata:
 spec:
   containers:
   - name: animal-web-server
-    image: nginx
+    image: httpd
     ports:
     - containerPort: 80
