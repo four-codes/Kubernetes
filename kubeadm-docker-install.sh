@@ -54,6 +54,10 @@ EOF
 sudo apt-get update && sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
+
+# sudo apt install -y kubeadm=1.22.3-00 kubelet=1.22.3-00 kubectl=1.22.3-00
+
+
 # https://blog.jreypo.io/containers/microsoft/azure/cloud/cloud-native/devops/deploying-a-kubernetes-cluster-in-azure-using-kubeadm/
 # https://www.scaleway.com/en/docs/deploy-kubernetes-cluster-kubeadm-cloud-controller-manager/
 # https://cloudyuga.guru/blog/cloud-controller-manager
