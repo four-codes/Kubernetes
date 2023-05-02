@@ -127,6 +127,7 @@ Worker Node Label set
 Master Act as node
 
     kubectl taint nodes --all node-role.kubernetes.io/master-
+    kubectl taint nodes --all node-role.kubernetes.io/control-plane-
 
 [kubeadm commands reference](https://kubernetes.io/docs/reference/setup-tools/kubeadm/)
 
